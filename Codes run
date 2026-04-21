@@ -1,0 +1,9 @@
+cat /root/.ssh/id_rsa.pub
+mkdir -p /root/.ssh
+nano /root/.ssh/authorized_keys
+chmod 700 /root/.ssh
+chmod 600 /root/.ssh/authorized_keys
+nano /etc/ssh/sshd_config (#PermitRootLogin without-password)
+systemctl restart sshd
+sshd -T | grep permitrootlogin
+ssh -i /root/.ssh/id_rsa root@<VM_IP>
